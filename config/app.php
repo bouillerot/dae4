@@ -330,6 +330,9 @@ return [
              * which is the recommended value in production environments
              */
             //'init' => ['SET GLOBAL innodb_stats_on_metadata = 0'],
+            'username' => 'root',
+            'password' => '',
+            'database' => 'dae4',
         ],
 
         /*
@@ -420,5 +423,6 @@ return [
      */
     'Session' => [
         'defaults' => 'php',
+        'timeout' => '1440', // 24h/j*60min./h = 12*12*h/j*min/h = 1440 min./j
     ],
 ];

@@ -64,6 +64,10 @@ class Application extends BaseApplication
         }
 
         // Load more plugins here
+        $this->addPlugin('Burzum/CakeServiceLayer');
+        $this->addPlugin('Queue', ['routes' => true]);
+        $this->addPlugin('IdeHelper');
+        $this->addPlugin('StateMachine');
     }
 
     /**
