@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<statemachine xmlns="app:daesem-01"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="app:daesem-01 ../../../vendor/spryker/cakephp-statemachine/config/state-machine-01.xsd">
+
+    <process name="Daesem01" main="true">
+        <states>
+            <!-- <state name="new" display="nouveau"/> -->
+            <state name="new" display="création"/>
+            <state name="init" display="brouillon"/>
+            <state name="dae" display="dae"/>
+            <state name="redo" display="à refaire"/>
+            <state name="dup" display="duplication"/>
+            <state name="ko" display="rejeté"/>
+            <state name="ok" display="valide"/>
+        </states>
+
+        <transitions>
+            <transition>
+                <source>new</source>
+                <target>dae</target>
+                <event>mn_create</event>
+            </transition>
+            <transition>
+                <source>new</source>
+                <target>init</target>
+                <event>mn_draft</event>
+            </transition>
+            <transition>
+                <source>dae</source>
+                <target>redo</target>
+                <event>mn_redo</event>
+            </transition>
+            <transition>
+                <source>init</source>
+                <target>dae</target>
+                <event>mn_send</event>
+            </transition>
+            <transition>
+                <source>redo</source>
+                <target>init</target>
+                <event>oe_draft</event>
+            </transition>
+            <transition condition="Test/Condition1">
+                <source>dae</source>
+                <target>ko</target>
+                <event>to_reject</event>
+            </transition>
+            <transition>
+                <source>dae</source>
+                <target>ok</target>
+                <event>to_authorize</event>
+            </transition>
+        </transitions>
+
+        <events>
+            <event name="mn_create" manual="true"/>
+            <event name="mn_draft" manual="true"/>
+            <event name="oe_draft" manual="true" onEnter='true'/>
+            <event name="mn_send" manual="true"/>
+            <event name="mn_redo" manual="true"/>
+            <event name="to_authorize" manual="true" timeout="2 minutes"/>
+            <event name="to_reject" manual="true" timeout="5 minutes"/>
+        </events>
+
+    </process>
+
+</statemachine>
