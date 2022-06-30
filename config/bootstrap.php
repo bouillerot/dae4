@@ -78,17 +78,38 @@ use Cake\Utility\Security;
  */
 try {
     Configure::config('default', new PhpConfig());
+    /* (CakePHP core configs) */
     Configure::load('app', 'default', false);
 } catch (\Exception $e) {
     exit($e->getMessage() . "\n");
 }
 
 /*
- * Load an environment local configuration file to provide overrides to your configuration.
- * Notice: For security reasons app_local.php **should not** be included in your git repo.
+ * Load an environment custom configuration file
+ * to provide overrides to your configuration.
+ * (project overwriting on top)
  */
-if (file_exists(CONFIG . 'app_local.php')) {
-    Configure::load('app_local', 'default');
+try {
+    if (file_exists(CONFIG . 'app_custom.php')) {
+        Configure::load('app_custom', 'default');
+    }
+} catch (\Exception $e) {
+    exit($e->getMessage() . "\n");
+}
+
+/*
+ * Load an environment local configuration file
+ * to provide overrides to your configuration.
+ * Notice: For security reasons
+ * app_local.php **should not** be included in your git repo.
+ * (env specific, contains sensitive keys/pwds, in gitignore !)
+ */
+try {
+    if (file_exists(CONFIG . 'app_local.php')) {
+        Configure::load('app_local', 'default');
+    }
+} catch (\Exception $e) {
+    exit($e->getMessage() . "\n");
 }
 
 /*
