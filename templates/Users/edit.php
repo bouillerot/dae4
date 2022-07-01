@@ -25,8 +25,6 @@
                 <?php
                     echo $this->Form->control('email');
                     echo $this->Form->control('password');
-                    echo $this->Form->control('created_by');
-                    echo $this->Form->control('modified_by');
                     echo $this->Form->control('daes._ids', ['options' => $daes]);
                 ?>
             </fieldset>

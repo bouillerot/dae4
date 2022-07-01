@@ -3,9 +3,12 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
+use App\Model\Entity\DaesUser; // pour les constantes
+use App\Model\Entity\User; // pour les constantes
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+
 
 /**
  * Users Model
@@ -40,15 +43,15 @@ class UsersTable extends Table
         parent::initialize($config);
 
         $this->setTable('users');
-        $this->setDisplayField('id');
-        $this->setPrimaryKey('id');
+        $this->setDisplayField(User::FIELD_ID);
+        $this->setPrimaryKey(User::FIELD_ID);
 
-        $this->addBehavior('Timestamp');
 
+        // link Users to Daes via join table DaesUsers
         $this->belongsToMany('Daes', [
-            'foreignKey' => 'user_id',
-            'targetForeignKey' => 'dae_id',
-            'joinTable' => 'daes_users',
+            'foreignKey'       => DaesUser::FIELD_USER_ID,
+            'targetForeignKey' => DaesUser::FIELD_DAE_ID,
+            'joinTable'        => 'daes_users',
         ]);
     }
 
@@ -61,26 +64,16 @@ class UsersTable extends Table
     public function validationDefault(Validator $validator): Validator
     {
         $validator
-            ->email('email')
-            ->requirePresence('email', 'create')
-            ->notEmptyString('email')
-            ->add('email', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
+            ->email(User::FIELD_EMAIL)
+            ->requirePresence(User::FIELD_EMAIL, 'create')
+            ->notEmptyString(User::FIELD_EMAIL)
+            ->add(User::FIELD_EMAIL, 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
 
         $validator
-            ->scalar('password')
-            ->maxLength('password', 255)
-            ->requirePresence('password', 'create')
-            ->notEmptyString('password');
-
-        $validator
-            ->integer('created_by')
-            ->requirePresence('created_by', 'create')
-            ->notEmptyString('created_by');
-
-        $validator
-            ->integer('modified_by')
-            ->requirePresence('modified_by', 'create')
-            ->notEmptyString('modified_by');
+            ->scalar(User::FIELD_PASSWORD)
+            ->maxLength(User::FIELD_PASSWORD, 255)
+            ->requirePresence(User::FIELD_PASSWORD, 'create')
+            ->notEmptyString(User::FIELD_PASSWORD);
 
         return $validator;
     }
@@ -94,7 +87,10 @@ class UsersTable extends Table
      */
     public function buildRules(RulesChecker $rules): RulesChecker
     {
-        $rules->add($rules->isUnique(['email']), ['errorField' => 'email']);
+        $rules->add(
+            $rules->isUnique([User::FIELD_EMAIL]),
+            ['errorField' => User::FIELD_EMAIL]
+        );
 
         return $rules;
     }

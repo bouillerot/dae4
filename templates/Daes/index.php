@@ -12,8 +12,6 @@
             <thead>
                 <tr>
                     <th><?= $this->Paginator->sort('id') ?></th>
-                    <th><?= $this->Paginator->sort('created') ?></th>
-                    <th><?= $this->Paginator->sort('modified') ?></th>
                     <th><?= $this->Paginator->sort('poste') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
@@ -22,8 +20,6 @@
                 <?php foreach ($daes as $dae): ?>
                 <tr>
                     <td><?= $this->Number->format($dae->id) ?></td>
-                    <td><?= h($dae->created) ?></td>
-                    <td><?= h($dae->modified) ?></td>
                     <td><?= h($dae->poste) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $dae->id]) ?>

@@ -16,7 +16,7 @@
     </aside>
     <div class="column-responsive column-80">
         <div class="daes view content">
-            <h3><?= h($dae->id) ?></h3>
+            <h3><?= h($dae->poste) ?></h3>
             <table>
                 <tr>
                     <th><?= __('Poste') ?></th>
@@ -30,14 +30,6 @@
                     <th><?= __('Id') ?></th>
                     <td><?= $this->Number->format($dae->id) ?></td>
                 </tr>
-                <tr>
-                    <th><?= __('Created') ?></th>
-                    <td><?= h($dae->created) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Modified') ?></th>
-                    <td><?= h($dae->modified) ?></td>
-                </tr>
             </table>
             <div class="related">
                 <h4><?= __('Related Users') ?></h4>
@@ -48,10 +40,6 @@
                             <th><?= __('Id') ?></th>
                             <th><?= __('Email') ?></th>
                             <th><?= __('Password') ?></th>
-                            <th><?= __('Created') ?></th>
-                            <th><?= __('Modified') ?></th>
-                            <th><?= __('Created By') ?></th>
-                            <th><?= __('Modified By') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
                         <?php foreach ($dae->users as $users) : ?>
@@ -59,10 +47,6 @@
                             <td><?= h($users->id) ?></td>
                             <td><?= h($users->email) ?></td>
                             <td><?= h($users->password) ?></td>
-                            <td><?= h($users->created) ?></td>
-                            <td><?= h($users->modified) ?></td>
-                            <td><?= h($users->created_by) ?></td>
-                            <td><?= h($users->modified_by) ?></td>
                             <td class="actions">
                                 <?= $this->Html->link(__('View'), ['controller' => 'Users', 'action' => 'view', $users->id]) ?>
                                 <?= $this->Html->link(__('Edit'), ['controller' => 'Users', 'action' => 'edit', $users->id]) ?>

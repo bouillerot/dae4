@@ -3,17 +3,13 @@
  * @var \App\View\AppView $this
  */
 ?>
-<div class="users form">
-    <?= $this->Flash->render() ?>
-    <h3>Connexion</h3>
+<div class="users form content">
     <?= $this->Form->create() ?>
     <fieldset>
-        <legend><?= __('Veuillez s\'il vous plaît entrer votre nom d\'utilisateur et votre mot de passe') ?></legend>
-        <?= $this->Form->control('email', ['required' => true]) ?>
-        <?= $this->Form->control('password', ['required' => true]) ?>
+        <legend><?= __('Please enter your username and password') ?></legend>
+        <?= $this->Form->control('username') ?>
+        <?= $this->Form->control('password') ?>
     </fieldset>
-    <?= $this->Form->submit(__('Login')); ?>
+    <?= $this->Form->button(__('Login')); ?>
     <?= $this->Form->end() ?>
-
-    <?= $this->Html->link("Ajouter un utilisateur", ['action' => 'add']) ?>
 </div>

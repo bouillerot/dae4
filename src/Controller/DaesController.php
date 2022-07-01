@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Cake\Log\Log;
+
 /**
  * Daes Controller
  *
@@ -49,8 +51,11 @@ class DaesController extends AppController
         $dae = $this->Daes->newEmptyEntity();
         if ($this->request->is('post')) {
             $dae = $this->Daes->patchEntity($dae, $this->request->getData());
-            $dae->users = $this->Authentication->getIdentity()->getIdentifier();
-            $this->log((string)$dae->users);
+            $usersTable = $this->getTableLocator()->get('Users');
+            $dae->users = $usersTable->get(
+                $this->Authentication->getIdentity()->getIdentifier()
+            );
+            Log::info($dae->users, '404');
             if ($this->Daes->save($dae)) {
                 $this->Flash->success(__('The dae has been saved.'));
 

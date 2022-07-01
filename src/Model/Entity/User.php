@@ -24,10 +24,6 @@ class User extends Entity
     public const FIELD_ID = 'id';
     public const FIELD_EMAIL = 'email';
     public const FIELD_PASSWORD = 'password';
-    public const FIELD_CREATED = 'created';
-    public const FIELD_MODIFIED = 'modified';
-    public const FIELD_CREATED_BY = 'created_by';
-    public const FIELD_MODIFIED_BY = 'modified_by';
     public const FIELD_DAES = 'daes';
 
     /**
@@ -42,10 +38,6 @@ class User extends Entity
     protected $_accessible = [
         self::FIELD_EMAIL => true,
         self::FIELD_PASSWORD => true,
-        self::FIELD_CREATED => true,
-        self::FIELD_MODIFIED => true,
-        self::FIELD_CREATED_BY => true,
-        self::FIELD_MODIFIED_BY => true,
         self::FIELD_DAES => true,
     ];
 

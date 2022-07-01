@@ -25,7 +25,6 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\Dae[]|\Cake\Datasource\ResultSetInterface saveManyOrFail(iterable $entities, $options = [])
  * @method \App\Model\Entity\Dae[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
  * @method \App\Model\Entity\Dae[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
- * @mixin \Cake\ORM\Behavior\TimestampBehavior
  * @property \App\Model\Table\DaesUsersTable&\Cake\ORM\Association\HasMany $DaesUsers
  * @property \StateMachine\Model\Table\StateMachineItemsTable&\Cake\ORM\Association\HasOne $ItemStates
  */
@@ -45,7 +44,7 @@ class DaesTable extends Table
         $this->setDisplayField(Dae::FIELD_POSTE);
         $this->setPrimaryKey(Dae::FIELD_ID);
 
-        $this->addBehavior('Timestamp');
+        // $this->addBehavior('Timestamp');
 
         // link Daes to Users via join table DaesUsers
         $this->belongsToMany('Users', [
@@ -58,7 +57,7 @@ class DaesTable extends Table
             'className' => 'StateMachine.StateMachineItems',
             'foreignKey' => 'identifier',
             // 'conditions' => ['ItemStates.state_machine' => 'Daesem'],
-            'conditions' => ['ItemStates.state_machine' => 'Daesem01'],
+            'conditions' => ['ItemStates.state_machine' => 'Daesem'],
         ]);
     }
 

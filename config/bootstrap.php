@@ -45,6 +45,9 @@ use Cake\Mailer\Mailer;
 use Cake\Mailer\TransportFactory;
 use Cake\Routing\Router;
 use Cake\Utility\Security;
+// Switch Cake\Error\ErrorHandler to
+use Tools\Error\ErrorHandler;
+
 
 /*
  * See https://github.com/josegonzalez/php-dotenv for API details.

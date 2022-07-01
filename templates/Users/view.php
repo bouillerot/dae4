@@ -26,22 +26,6 @@
                     <th><?= __('Id') ?></th>
                     <td><?= $this->Number->format($user->id) ?></td>
                 </tr>
-                <tr>
-                    <th><?= __('Created By') ?></th>
-                    <td><?= $this->Number->format($user->created_by) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Modified By') ?></th>
-                    <td><?= $this->Number->format($user->modified_by) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Created') ?></th>
-                    <td><?= h($user->created) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Modified') ?></th>
-                    <td><?= h($user->modified) ?></td>
-                </tr>
             </table>
             <div class="related">
                 <h4><?= __('Related Daes') ?></h4>
@@ -50,16 +34,12 @@
                     <table>
                         <tr>
                             <th><?= __('Id') ?></th>
-                            <th><?= __('Created') ?></th>
-                            <th><?= __('Modified') ?></th>
                             <th><?= __('Poste') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
                         <?php foreach ($user->daes as $daes) : ?>
                         <tr>
                             <td><?= h($daes->id) ?></td>
-                            <td><?= h($daes->created) ?></td>
-                            <td><?= h($daes->modified) ?></td>
                             <td><?= h($daes->poste) ?></td>
                             <td class="actions">
                                 <?= $this->Html->link(__('View'), ['controller' => 'Daes', 'action' => 'view', $daes->id]) ?>

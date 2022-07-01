@@ -4,8 +4,6 @@
  * @var \App\Model\Entity\User $user
  * @var \Cake\Collection\CollectionInterface|string[] $daes
  */
-
- use App\Model\Entity\User;
 ?>
 <div class="row">
     <aside class="column">
@@ -20,10 +18,8 @@
             <fieldset>
                 <legend><?= __('Add User') ?></legend>
                 <?php
-                    echo $this->Form->control(User::FIELD_EMAIL);
-                    echo $this->Form->control(User::FIELD_PASSWORD);
-                    echo $this->Form->control(User::FIELD_CREATED_BY);
-                    echo $this->Form->control(User::FIELD_MODIFIED_BY);
+                    echo $this->Form->control('email');
+                    echo $this->Form->control('password');
                     echo $this->Form->control('daes._ids', ['options' => $daes]);
                 ?>
             </fieldset>

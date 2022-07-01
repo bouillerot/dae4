@@ -19,8 +19,6 @@ use Cake\ORM\Entity;
 class Dae extends Entity
 {
     public const FIELD_ID = 'id';
-    public const FIELD_CREATED = 'created';
-    public const FIELD_MODIFIED = 'modified';
     public const FIELD_POSTE = 'poste';
     public const FIELD_USERS = 'users';
     public const FIELD_ITEM_STATE = 'item_state';
@@ -34,8 +32,6 @@ class Dae extends Entity
      * @var array<string, bool>
      */
     protected $_accessible = [
-        self::FIELD_CREATED => true,
-        self::FIELD_MODIFIED => true,
         self::FIELD_POSTE => true,
         self::FIELD_USERS => true,
         self::FIELD_ITEM_STATE => true,

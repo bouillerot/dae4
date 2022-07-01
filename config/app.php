@@ -372,7 +372,9 @@ return [
             'scopes' => false,
             'levels' => ['warning', 'error', 'critical', 'alert', 'emergency'],
         ],
-        // To enable this dedicated query log, you need set your datasource's log flag to true
+        /*
+        * To enable this dedicated query log, you need set your datasource's log flag to true
+        */
         'queries' => [
             'className' => FileLog::class,
             'path' => LOGS,
@@ -380,6 +382,18 @@ return [
             'url' => env('LOG_QUERIES_URL', null),
             'scopes' => ['queriesLog'],
         ],
+
+        /*
+        * Most 404 logs should not be part of your error log, for example.
+        * You can either completely ignore them, or better yet put them into their own space:
+        */
+        '404' => [
+            'className' => FileLog::class, // e.g. 'File' or 'DatabaseLog.Database'
+            'file' => '404',
+            'levels' => ['error'],
+            'scopes' => ['404'],
+        ]
+
     ],
 
     'StateMachine' => [
